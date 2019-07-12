@@ -1,25 +1,26 @@
 %Procesamiento de señales EMG adquiridas mediante OpenSignals
+%https://www.biosignalsplux.com/datasheets/EMG_Sensor_Datasheet.pdf
 %José Luis Arco López
 
 close all
 clear all
 
 
-data=dlmread('EMG_señaltomada.txt', '\t', 3, 0); %Leemos los datos del fichero
+data=dlmread('giro1.txt', '\t', 3, 0); %Leemos los datos del fichero
 
 
 Muestras=data(:,1);
 N=length(Muestras); %Número de muestras
-EMG=data(:,3);
-
-EMG= EMG/(10000); %Queremos la señal en milivoltios
+ADC=data(:,3); %Valor muestreado del canal
+EMGV=(((ADC/2^16)-0.5)*3)/1000 %Conversión a Voltios
+EMG=EMGV*1000 %De voltios a milivoltios
 fm = 4000; %Frecuencia de muestreo
 tm=1/fm; %Periodo de muestreo 
 tiempo=N*tm  %Tiempo en segundos que dura la señal
 t=0:tm:tiempo-tm  %Duración de la señal, desde 0 hasta el tiempo total
 f0=fm/N %Frecuencia por muestra
 
-EMG = detrend(EMG) %Eliminamos el offset de la señal
+%EMG = detrend(EMG) %Eliminamos el offset de la señal
 EMGn=fft(EMG); %Hacemos la fft para obtener su espectro
 
 figure 
@@ -27,7 +28,7 @@ figure
 subplot(2,1,1)
 plot(t,EMG,'k') 
 title('Señal EMG adquirida')
-xlabel('Muestras'),ylabel('mV'),grid on
+xlabel('Tiempo(s)'),ylabel('mV'),grid on
 ylim([-1.2 1.2]) %limitamos entre -1.2 mv y 1.2mv
 xlim([0 tiempo])
 
@@ -41,8 +42,8 @@ xlim([0 2000])
 %(Las señales EMG tienen su información más importante entre 4 y 500Hz)
 
 cb=4;
-ca=499;
-[b,a]=butter(4,[cb*2/fm ca*2/fm]) %Filtro butterworth paso banda
+ca=500;
+[b,a]=butter(4,[cb*2/fm ca*2/fm]); %Filtro butterworth paso banda
 EMGf1=filter(b,a,EMG); %Señal con filtrado paso banda
 
 figure
@@ -106,7 +107,9 @@ xlim([0 1000])
 
 %Algoritmo para detectar la envolvente usando ventanas
 
-L=250; %Duración de la ventana en milisegundos
+L=250;     %Duración de la ventana en milisegundos
+Lx=0.0250; %Duración de la ventana en segundos
+Lm=Lx/tm;  %Numero de muestras una ventana entera 
 SV=round(L/2); %tiempo en el que hay superposición de una ventana con otra
 EMG=EMGf2;
 Tms=tiempo*1000; %tiempo de la señal en milisegundos
@@ -118,32 +121,26 @@ W=floor(Tms/(L-SV)); %Numero de ventanas
 %IAV(suma de los valores absolutos de la señal)
 %la señal
 
-EMGE_MAV(W) = 0;
-EMGE_RMS(W) = 0;
 EMGE_IAV(W) = 0;
 Start=1;
-End=L;
+End=Lm;
+S=round(N/W); %Numero de muestras por ventana contando overlapping
+
 for i = 1:W
-    EMGE_MAV(i) = mean(abs(EMG(Start:End)));
-    EMGE_RMS(i) = rms(EMG(Start:End));
     EMGE_IAV(i) = sum(abs(EMG(Start:End)));
-    Start=Start+SV;
-    End=End+SV;
+    Start=Start+S;
+    End=End+S;
 end
-EMGE_MAV=EMGE_MAV/max(EMGE_MAV);
-EMGE_RMS=EMGE_RMS/max(EMGE_RMS);
-EMGE_IAV=EMGE_IAV/max(EMGE_IAV);
+
+%EMGE_IAV=EMGE_IAV/max(EMGE_IAV);
 
 figure
 T=linspace(0,tiempo,W);
-plot(T,EMGE_MAV,'-g*')
-hold on
-plot(T,EMGE_RMS,'-mo')
 plot(T,EMGE_IAV,'-k')
-title('MAV vs RMS vs IAV')
-xlabel('Tiempo(s)'),ylabel('Magnitud normalizada'),grid on
+title('IAV')
+xlabel('Tiempo(s)'),ylabel('Magnitud sin normalizar'),grid on
 xlim([0 tiempo])
-legend('MAV','RMS','IAV')
+
 
 %Para discriminar usaremos por ejemplo la IAV:
 
@@ -159,9 +156,9 @@ X(W)=0;
 for i = 1:W
     if EMGE(i)==1
         categoria=1;
-    elseif EMGE(i)>0.75
+    elseif EMGE(i)>0.5
         categoria=2;
-    elseif EMGE(i)<0.6
+    elseif EMGE(i)>0.15
         categoria=3;
     else 
         categoria=4;
@@ -179,3 +176,6 @@ for i = 1:W
         
     end
 end
+
+
+

@@ -1,0 +1,25 @@
+
+En el archivo "inicios de la idea" están recogidas las primeras pruebas de código con señales
+waw y señales txt provenientes o no de biosignalplux.
+
+En el archivo "código final" se presenta el código en matlab para la adquisición de señales 
+EMG una vez finalizado. Este código presenta principalmente dos partes; la primera se trata
+de una serie de filtrados, primero para cojer la señal en el rango que nos interesa de 
+4 a 500Hz y otro para eliminar los 50Hz de la red eléctrica.
+Una vez filtrada hay que caracterizarla para poder trabajar con ella luego en la FPGA. Para ello
+dividimos la señal en ventanas de 250ms con un overlap de 125ms, y caracterizamos usando la "IAV".
+La IAV no es otra cosa que la suma de valores absolutos de la señal, por lo que recorriendo todas 
+las ventanas vamos sumando los valores absolutos de las muestras tomadas de la señal EMG.
+Esto nos permite distinguir mediante umbrales los grados de intensidad de la señal obtenida, cuanto más
+tensión se aplique más amplitud tendrá la señal EMG, lo que se traducirá en un pico más grande de la IAV.
+Con esto ya podemos decir que si una señal pasa determinado umbral será una contracción, contracción leve o relajación.
+
+Como vamos a trabajar con el movimiento de contracción-giro he añadido una serie de ejemplos de señales obtenidas por mi
+en biosignal plux. En ellas se puede distinguir los giros como la máxima amplitud, y la relajación como la mínima. La 
+contracción de la mano será las amplitudes intermedias.
+
+También hay más ejemplos de contracciones, así como que en "rápidolento" la diferencia entre contraer la mano rápido o lentamente.
+
+
+
+ 
