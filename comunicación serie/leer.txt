@@ -2,4 +2,4 @@ En el archivo "matlabfpgaserie" se encuentra el código en matbab para abrir el p
 de 8 bits a la fpga.
 
 En el archivo "serie" se encuentra el esquema del receptor serie para recibir de matlab el dato e iluminar unos leds correspondientes
-a los valores de dicho dato.
+a los valores de dicho dato. El receptor serie es un bloque de una colección de obijuan, adjunto también la colección.
