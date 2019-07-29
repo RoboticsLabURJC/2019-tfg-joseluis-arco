@@ -1,0 +1,5 @@
+En el archivo "matlabfpgaserie" se encuentra el código en matbab para abrir el puerto serie del ordenador y enviar un dato
+de 8 bits a la fpga.
+
+En el archivo "serie" se encuentra el esquema del receptor serie para recibir de matlab el dato e iluminar unos leds correspondientes
+a los valores de dicho dato.
