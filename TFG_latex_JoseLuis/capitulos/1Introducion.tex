@@ -1,0 +1,61 @@
+\chapter{Introdución}\label{sec:intro}
+\section{Motivación del proyecto y objetivos}
+
+
+Este trabajo pretende poner en práctica todos los conocimientos adquiridos durante la carrera en base a un supuesto cada vez con más importancia en nuestros días: el control referido a señales biomédicas. Tras realizar mis estudios me di cuenta de que sabía un poco de muchas cosas, pero si quería tener un conocimiento específico en este tema tenía que trabajar e investigar por mi cuenta en mi propio proyecto.\newline
+
+Nuestros cuerpos están constantemente comunicando información sobre nuestra salud. Las señales biomédicas son la representación de las actividades del cuerpo, que pueden ser capturadas a través de instrumentos que miden la frecuencia cardíaca, la presión arterial, los niveles de saturación de oxígeno, la glucosa en sangre, la conducción nerviosa, la actividad cerebral, etc.\newline
+
+ Tradicionalmente el procesamiento de señales lo que hacía era extraer información significativa de estas señales con el objetivo de comprender mejor el cuerpo humano. Este procesamiento es lo que permite a los médicos monitorear distintas enfermedades y tener toda la información posible para sus diagnósticos. \newline En nuestros días los ingenieros están haciendo un arduo trabajo descubriendo nuevas formas de procesar estas señales, ya no sólo para conseguir determinar el estado de salud de un paciente a través de medidas menos invasivas; si no también con el objeto de usar estas señales junto a las nuevas tecnologías para hacer la vida más fácil a las personas. Una nueva apuesta de trabajo surge en base  al control de robots usando señales biomédicas que permitan hacer tareas por nosotros que no podríamos hacer de otra manera. \newline
+
+Se me presenta como ingeniero por lo tanto, la oportunidad de ofrecer un granito de arena a esta nueva apuesta investigando y usando una de las tecnologías más innovadoras hasta el momento, las FPGAS libres.  Esta tecnología digital se encuentra cada vez más en auge debido a que es muy barata y permite unos procesamientos muy rápidos. Así usando estas FPGAS podríamos procesar señales adquiridas de nuestro cuerpo y usarlas para control de un sistema robótico. \newline
+
+Como sistema robótico que controlar se propone usar un dron telerigido ya que cada vez tienen más funcionalidades y su uso extá muy extendido; por lo que tenemos bastante información sobre ellos. \newline 
+
+El objetivo principal  y más importante del proyecto sería por lo tanto conseguir el diseño de un sistema de control para robots a través de bioseñales. 
+Para conseguir  el objetivo principal, hay que conseguir otros objetivos más pequeños:\newline
+
+-	Realizar un estudio de las diferentes bioseñales disponibles, dentro de las cuales elegiremos la EMG.\newline
+
+-	Adquirir conocimientos básicos de distintos lenguajes y herramientas en los que incluimos:\newline
+
+\begin{itemize}
+  	\item Lenguajes de descripción hardware (Verilog)
+	\item Matlab
+	\item Empleo de herramientas para su uso en la FPGA como icestudio.
+	\item Hardware de obtención de señales, como Biosignalplux.
+	\item Software de visualización de señales
+\end{itemize} 
+
+-	Comprender el funcionamiento de las FPGAS existentes y realizar con ellas el sistema.\newline
+
+-        Usar estas herramientas y las señales captadas para desarrollar un modo de control.\newline
+
+\section{Planificación}
+
+\begin{ganttchart}[y unit title=0.4cm,
+y unit chart=0.5cm,
+vgrid,hgrid,
+title height=1,
+bar/.style={draw,fill=green},
+bar incomplete/.append style={fill=yellow!50},
+bar height=0.7]{1}{24}
+ \gantttitle{2019}{12}
+ \gantttitle{2020}{12} \\
+ \gantttitlelist{1,...,12}{1}
+ \gantttitlelist{1,...,12}{1} \\
+ \ganttbar{Fase 1}{3}{7} \\
+ \ganttbar{Fase 2}{7}{12} \\
+ \ganttbar{Fase 4}{3}{7} \\
+ \ganttbar{Fase 5}{7}{12} \\
+ \ganttbar[progress=70]{Fase 3}{13}{18} \\
+ \ganttbar[progress=40]{Conclusión}{20}{24} \\
+ % rela\c c\~oes
+ \ganttlink{elem0}{elem1}
+ \ganttlink{elem1}{elem2}
+ \ganttlink{elem2}{elem3}
+\end{ganttchart}
+
+\section{Estructura de la memoria}
+
+Esta memoria se divide en dos partes

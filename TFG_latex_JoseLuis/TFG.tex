@@ -3,11 +3,19 @@
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-
+\usepackage{enumerate} % enumerar
+\usepackage{eurosym}
 % \usepackage[style=list, number=none]{glossary} %
 %\usepackage{titlesec}
 %\usepackage{pailatino}
-
+\usepackage{graphicx}
+\usepackage{float}			
+\usepackage{capt-of}				% Para poder pies de fotos
+\usepackage{amsmath}				% Para mates
+\usepackage{amssymb}				% Para mates
+\usepackage{mathtools}
+\usepackage{pgfgantt}
+\usepackage{xcolor}
 \decimalpoint
 \usepackage{dcolumn}
 \newcolumntype{.}{D{.}{\esperiod}{-1}}
@@ -182,11 +190,9 @@ pdfproducer = {pdflatex}
 %\mainmatter
 %\setlength{\parskip}{5pt}
 
-\input{capitulos/1.Introdución}
-%
-%\input{capitulos/02_EspecificacionRequisitos}
-%
-%\input{capitulos/03_Planificacion}
+\input{capitulos/1Introducion}
+\input{capitulos/2Estadodelarte}
+\input{capitulos/3Herramientassofwareyhardware}
 %
 %\input{capitulos/04_Analisis}
 %
