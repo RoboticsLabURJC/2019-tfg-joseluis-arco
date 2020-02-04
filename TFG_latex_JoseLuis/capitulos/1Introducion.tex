@@ -14,27 +14,31 @@ Como sistema robótico que controlar se propone usar un dron telerigido ya que c
 
 El objetivo principal  y más importante del proyecto sería por lo tanto conseguir el diseño de un sistema de control para robots a través de bioseñales. 
 Para conseguir  el objetivo principal, hay que conseguir otros objetivos más pequeños:\newline
-
--	Realizar un estudio de las diferentes bioseñales disponibles, dentro de las cuales elegiremos la EMG.\newline
-
--	Adquirir conocimientos básicos de distintos lenguajes y herramientas en los que incluimos:\newline
-
 \begin{itemize}
-  	\item Lenguajes de descripción hardware (Verilog)
-	\item Matlab
-	\item Empleo de herramientas para su uso en la FPGA como icestudio.
-	\item Hardware de obtención de señales, como Biosignalplux.
-	\item Software de visualización de señales
+\item \textbf{Estudio de las diferentes bioseñales disponibles.} Existen distintos tipos de bioseñales que pueden ser usadas para el método de control, entre las que vamos a destacar el \textit{ECG, EEG y EMG}. Se determinará cuál es la más óptima para el desarrollo del proyecto. 
+
+\item \textbf{Adquisición de conocimientos básicos sobre distintos lenguajes y herramientas en los que incluimos:}
+
+	\begin{itemize}
+  		\item Lenguajes de descripción hardware, ente los que destacará \textit{Verilog}.
+		\item Matlab.
+		\item Software de diseño digital para la FPGA, como \textit{icestudio}.
+		\item Hardware de obtención de señales, como \textit{Biosignalplux}.
+		\item Software de visualización de señales.
+	\end{itemize} 
+
+\item \textbf{Estudio del funcionamiento de las FPGAS existentes y diseño con ellas el sistema.}
+
+\item \textbf{Uso estas herramientas y las señales captadas para desarrollar un modo de control.}
 \end{itemize} 
-
--	Comprender el funcionamiento de las FPGAS existentes y realizar con ellas el sistema.\newline
-
--        Usar estas herramientas y las señales captadas para desarrollar un modo de control.\newline
 
 \section{Planificación}
 
-\begin{ganttchart}[y unit title=0.4cm,
-y unit chart=0.5cm,
+%\begin{rotate}{270}
+%\begin{tiny}
+\begin{ganttchart}[y unit title=0.5cm,
+y unit chart=0.7cm, x unit=0.5cm,
+expand chart=\textwidth,
 vgrid,hgrid,
 title height=1,
 bar/.style={draw,fill=green},
@@ -44,18 +48,24 @@ bar height=0.7]{1}{24}
  \gantttitle{2020}{12} \\
  \gantttitlelist{1,...,12}{1}
  \gantttitlelist{1,...,12}{1} \\
- \ganttbar{Fase 1}{3}{7} \\
- \ganttbar{Fase 2}{7}{12} \\
- \ganttbar{Fase 4}{3}{7} \\
- \ganttbar{Fase 5}{7}{12} \\
- \ganttbar[progress=70]{Fase 3}{13}{18} \\
- \ganttbar[progress=40]{Conclusión}{20}{24} \\
+ \ganttbar{\small Reunión con profesores}{3}{4} \\
+ \ganttbar{\small Aprendizaje Fpga e icestudio}{4}{5} \\
+ \ganttbar{\small Adquisición con BioSignalplux}{5}{7} \\ 
+ \ganttbar{\small Realización de la memoria}{7}{17} \\
+\ganttbar{\small Diseño en Icestudio}{7}{12} \\
+\ganttbar{\small Simulador de dron}{14}{15} \\
+ %\ganttbar[progress=70]{Fase 3}{13}{18} \\
+ %\ganttbar[progress=40]{Conclusión}{20}{24} \\
  % rela\c c\~oes
  \ganttlink{elem0}{elem1}
  \ganttlink{elem1}{elem2}
- \ganttlink{elem2}{elem3}
+ \ganttlink{elem4}{elem5}
 \end{ganttchart}
+%\end{tiny}
+%\end{rotate}
 
 \section{Estructura de la memoria}
 
-Esta memoria se divide en dos partes
+Esta memoria se plantea a lo largo de  5 capítulos y un sexto capítulo de conclusión, en los que se exponen los primeros conceptos e ideas del proyecto hasta la realización del mismo; así como su final puesta en marcha. \newline
+En este mismo capítulo inicial se define la estructura  de la memoria, se trata la planificación que se ha seguido así como la motivación a la hora de comenzar el proyecto. \newline En el capítulo 2 definimos el estado del arte en el cual se estudia la evolución y los tipos de dron que existen en la actualidad, además de los tipos de señales biomédicas existentes, entre ellas el EMG o señal electromiográfica que será con la cuál vamos a trabajar.\newline Posteriormente en el capítulo 3 exponemos las herramientas que se van a utilizar en toda la idea para su desarrollo, y a continuación en el capítulo 4 se realiza el diseño del sistema y su implementación. \newline
+ Finalmente en el capítulo 5 se hacen las pruebas correspondientes y se exponen los resultados obtenidos. 

@@ -23,15 +23,15 @@
 \addto\shorthandsspanish{\let\esperiod\es@period@code}
 \makeatother
 
-
 %\usepackage[chapter]{algorithm}
 \RequirePackage{verbatim}
 %\RequirePackage[Glenn]{fncychap}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{afterpage}
-
-\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{listings}
+\lstset{language=Matlab,breaklines=true}
 
 \usepackage[pdfborder={000}]{hyperref} %referencia
 
@@ -178,13 +178,29 @@ pdfproducer = {pdflatex}
 }
 \makeatother
 
+\usepackage{float}
 \usepackage{pdfpages}
+\usepackage{caption}
+\usepackage{subfigure}
+ \usepackage{rotating}
+\usepackage{vmargin}
+
+\setpapersize{A4}
+\setmargins{3cm}       % margen izquierdo
+{1.5cm}                        % margen superior
+{15.5cm}                      % anchura del texto
+{23.42cm}                    % altura del texto
+{10pt}                           % altura de los encabezados
+{1cm}                           % espacio entre el texto y los encabezados
+{0pt}                             % altura del pie de página
+{2cm}                           % espacio entre el texto y el pie de página
 \begin{document}
 \input{portada/portada}
 \input{prefacios/prefacio}
 %\frontmatter
 \tableofcontents
 \listoffigures
+\renewcommand{\listtablename}{Índice de Tablas}
 \listoftables
 %
 %\mainmatter
@@ -193,10 +209,8 @@ pdfproducer = {pdflatex}
 \input{capitulos/1Introducion}
 \input{capitulos/2Estadodelarte}
 \input{capitulos/3Herramientassofwareyhardware}
-%
-%\input{capitulos/04_Analisis}
-%
-%\input{capitulos/05_Diseno}
+\input{capitulos/4Disenodelsistem}
+%\input{capitulos/5Implementaciondelsistema}
 %
 %\input{capitulos/06_Implementacion}
 %
@@ -207,9 +221,11 @@ pdfproducer = {pdflatex}
 %%\chapter{Conclusiones y Trabajos Futuros}
 %
 %
-%%\nocite{*}
+\nocite{*}
 %\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
 %\bibliographystyle{miunsrturl}
+\bibliographystyle{unsrt}
+\bibliography{Bio}
 %
 %\appendix
 %\input{apendices/manual_usuario/manual_usuario}
